@@ -58,6 +58,10 @@ events:
 History Log
 =============
 
+- 1.1.0 -- 2019-11-11
+
+    - update LightEventsService->registerListener, now accepts an array of events as first argument
+    
 - 1.0.0 -- 2019-10-31
 
     - initial commit

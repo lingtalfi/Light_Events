@@ -4,7 +4,7 @@
 
 The LightEventsService class
 ================
-2019-10-31 --> 2019-10-31
+2019-10-31 --> 2019-11-11
 
 
 
@@ -30,7 +30,7 @@ class <span class="pl-k">LightEventsService</span>  {
 - Methods
     - public [__construct](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/__construct.md)() : void
     - public [dispatch](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/dispatch.md)(string $event, ?$data = null) : void
-    - public [registerListener](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/registerListener.md)(string $event, $listener) : void
+    - public [registerListener](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/registerListener.md)($eventName, $listener) : void
 
 }
 
@@ -57,7 +57,7 @@ Methods
 
 - [LightEventsService::__construct](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/__construct.md) &ndash; Builds the LightEventsService instance.
 - [LightEventsService::dispatch](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/dispatch.md) &ndash; Dispatches the given event along with the given data.
-- [LightEventsService::registerListener](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/registerListener.md) &ndash; Registers a listener (either a callable or a LightEventsListenerInterface instance).
+- [LightEventsService::registerListener](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/registerListener.md) &ndash; Registers one or more listener(s) (either a callable or a LightEventsListenerInterface instance).
 
 
 

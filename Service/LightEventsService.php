@@ -59,16 +59,21 @@ class LightEventsService
 
 
     /**
-     * Registers a listener (either a callable or a LightEventsListenerInterface instance).
+     * Registers one or more listener(s) (either a callable or a LightEventsListenerInterface instance).
      *
-     * @param string $event
+     * @param string|array $eventName
      * @param $listener
      */
-    public function registerListener(string $event, $listener)
+    public function registerListener($eventName, $listener)
     {
-        if (false === array_key_exists($event, $this->listeners)) {
-            $this->listeners[$event] = [];
+        if (false === is_array($eventName)) {
+            $eventName = [$eventName];
         }
-        $this->listeners[$event][] = $listener;
+        foreach ($eventName as $event) {
+            if (false === array_key_exists($event, $this->listeners)) {
+                $this->listeners[$event] = [];
+            }
+            $this->listeners[$event][] = $listener;
+        }
     }
 }
