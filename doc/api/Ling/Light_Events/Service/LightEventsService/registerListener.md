@@ -16,7 +16,7 @@ Description
 ================
 
 
-public [LightEventsService::registerListener](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/registerListener.md)($eventName, $listener) : void
+public [LightEventsService::registerListener](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/registerListener.md)($eventName, $listener, ?int $priority = 0) : void
 
 
 
@@ -38,6 +38,10 @@ Parameters
 
     
 
+- priority
+
+    
+
 
 Return values
 ================
@@ -53,7 +57,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [LightEventsService::registerListener](https://github.com/lingtalfi/Light_Events/blob/master/Service/LightEventsService.php#L67-L78)
+See the source code for method [LightEventsService::registerListener](https://github.com/lingtalfi/Light_Events/blob/master/Service/LightEventsService.php#L79-L93)
 
 
 See Also

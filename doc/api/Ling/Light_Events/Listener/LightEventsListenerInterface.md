@@ -4,7 +4,7 @@
 
 The LightEventsListenerInterface class
 ================
-2019-10-31 --> 2019-11-11
+2019-10-31 --> 2019-11-12
 
 
 
@@ -25,7 +25,7 @@ Class synopsis
 abstract class <span class="pl-k">LightEventsListenerInterface</span>  {
 
 - Methods
-    - abstract public [process](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Listener/LightEventsListenerInterface/process.md)($data, string $event) : mixed
+    - abstract public [process](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Listener/LightEventsListenerInterface/process.md)($data, string $event, ?bool &$stopPropagation = false) : mixed
 
 }
 

@@ -16,6 +16,9 @@ class LightEventsService
 
     /**
      * This property holds the listeners for this instance.
+     * It's an array of priority => listenerGroup.
+     * Each listenerGroup is an array of listeners.
+     *
      * Each listener is either:
      * - a LightEventsListenerInterface instance
      * - a callable, with signature:
@@ -44,14 +47,22 @@ class LightEventsService
     public function dispatch(string $event, $data = null)
     {
         if (array_key_exists($event, $this->listeners)) {
-            foreach ($this->listeners[$event] as $listener) {
-                if ($listener instanceof LightEventsListenerInterface) {
-                    $listener->process($data, $event);
-                } elseif (is_callable($listener)) {
-                    call_user_func($listener, $data, $event);
-                } else {
-                    $type = gettype($listener);
-                    throw new LightEventsException("Invalid listener for event $event, with type $type.");
+            $listeners = $this->listeners[$event];
+            krsort($listeners);
+            $stopPropagation = false;
+            foreach ($listeners as $listenerGroup) {
+                foreach ($listenerGroup as $listener) {
+                    if ($listener instanceof LightEventsListenerInterface) {
+                        $listener->process($data, $event, $stopPropagation);
+                    } elseif (is_callable($listener)) {
+                        call_user_func_array($listener, [$data, $event, &$stopPropagation]);
+                    } else {
+                        $type = gettype($listener);
+                        throw new LightEventsException("Invalid listener for event $event, with type $type.");
+                    }
+                    if (true === $stopPropagation) {
+                        return;
+                    }
                 }
             }
         }
@@ -63,8 +74,9 @@ class LightEventsService
      *
      * @param string|array $eventName
      * @param $listener
+     * @param int $priority = 0
      */
-    public function registerListener($eventName, $listener)
+    public function registerListener($eventName, $listener, int $priority = 0)
     {
         if (false === is_array($eventName)) {
             $eventName = [$eventName];
@@ -73,7 +85,10 @@ class LightEventsService
             if (false === array_key_exists($event, $this->listeners)) {
                 $this->listeners[$event] = [];
             }
-            $this->listeners[$event][] = $listener;
+            if (false === array_key_exists($priority, $this->listeners[$event])) {
+                $this->listeners[$event][$priority] = [];
+            }
+            $this->listeners[$event][$priority][] = $listener;
         }
     }
 }

@@ -4,7 +4,7 @@
 
 The LightEventsService class
 ================
-2019-10-31 --> 2019-11-11
+2019-10-31 --> 2019-11-12
 
 
 
@@ -30,7 +30,7 @@ class <span class="pl-k">LightEventsService</span>  {
 - Methods
     - public [__construct](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/__construct.md)() : void
     - public [dispatch](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/dispatch.md)(string $event, ?$data = null) : void
-    - public [registerListener](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/registerListener.md)($eventName, $listener) : void
+    - public [registerListener](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/registerListener.md)($eventName, $listener, ?int $priority = 0) : void
 
 }
 
@@ -43,6 +43,9 @@ Properties
 - <span id="property-listeners"><b>listeners</b></span>
 
     This property holds the listeners for this instance.
+    It's an array of priority => listenerGroup.
+    Each listenerGroup is an array of listeners.
+    
     Each listener is either:
     - a LightEventsListenerInterface instance
     - a callable, with signature:

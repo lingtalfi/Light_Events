@@ -58,6 +58,10 @@ events:
 History Log
 =============
 
+- 1.2.0 -- 2019-11-12
+
+    - add priority and stopPropagation systems
+    
 - 1.1.0 -- 2019-11-11
 
     - update LightEventsService->registerListener, now accepts an array of events as first argument
