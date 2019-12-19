@@ -4,7 +4,7 @@
 
 The LightEventsService class
 ================
-2019-10-31 --> 2019-11-12
+2019-10-31 --> 2019-12-19
 
 
 
@@ -26,6 +26,7 @@ class <span class="pl-k">LightEventsService</span>  {
 
 - Properties
     - protected array [$listeners](#property-listeners) ;
+    - protected [Ling\Light\ServiceContainer\LightServiceContainerInterface](https://github.com/lingtalfi/Light/blob/master/doc/api/Ling/Light/ServiceContainer/LightServiceContainerInterface.md) [$container](#property-container) ;
 
 - Methods
     - public [__construct](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/__construct.md)() : void
@@ -50,6 +51,12 @@ Properties
     - a LightEventsListenerInterface instance
     - a callable, with signature:
          - f ( mixed data, string event ) // same as LightEventsListenerInterface->process
+    
+    
+
+- <span id="property-container"><b>container</b></span>
+
+    This property holds the container for this instance.
     
     
 

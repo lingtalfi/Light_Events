@@ -1,2 +1,5 @@
 events:
     instance: Ling\Light_Events\Service\LightEventsService
+    methods:
+        setContainer:
+            container: @container()

@@ -57,7 +57,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [LightEventsService::registerListener](https://github.com/lingtalfi/Light_Events/blob/master/Service/LightEventsService.php#L79-L93)
+See the source code for method [LightEventsService::registerListener](https://github.com/lingtalfi/Light_Events/blob/master/Service/LightEventsService.php#L90-L109)
 
 
 See Also

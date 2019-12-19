@@ -58,7 +58,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [LightEventsService::dispatch](https://github.com/lingtalfi/Light_Events/blob/master/Service/LightEventsService.php#L47-L69)
+See the source code for method [LightEventsService::dispatch](https://github.com/lingtalfi/Light_Events/blob/master/Service/LightEventsService.php#L56-L80)
 
 
 See Also

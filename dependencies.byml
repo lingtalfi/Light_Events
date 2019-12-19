@@ -1,3 +1,7 @@
-dependencies: []
+dependencies: 
+    Ling: 
+        - Light
+    
+
 post_install: 
     map: true

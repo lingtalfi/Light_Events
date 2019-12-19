@@ -1,6 +1,6 @@
 Ling/Light_Events
 ================
-2019-10-31 --> 2019-11-12
+2019-10-31 --> 2019-12-19
 
 
 
@@ -17,5 +17,8 @@ Table of contents
     - [LightEventsService::registerListener](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/registerListener.md) &ndash; Registers one or more listener(s) (either a callable or a LightEventsListenerInterface instance).
 
 
+Dependencies
+============
+- [Light](https://github.com/lingtalfi/Light)
 
 

@@ -1,6 +1,6 @@
 Light_Events
 ===========
-2019-10-31
+2019-10-31 -> 2019-12-19
 
 
 
@@ -49,6 +49,9 @@ Here is an example of the service configuration:
 ```yaml
 events:
     instance: Ling\Light_Events\Service\LightEventsService
+    methods:
+        setContainer:
+            container: @container()
 ```
 
 
@@ -58,6 +61,10 @@ events:
 History Log
 =============
 
+- 1.3.0 -- 2019-12-19
+
+    - update LightEventsService, now transmits the container for listeners implementing LightServiceContainerAwareInterface
+    
 - 1.2.0 -- 2019-11-12
 
     - add priority and stopPropagation systems

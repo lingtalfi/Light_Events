@@ -4,6 +4,8 @@
 namespace Ling\Light_Events\Service;
 
 
+use Ling\Light\ServiceContainer\LightServiceContainerAwareInterface;
+use Ling\Light\ServiceContainer\LightServiceContainerInterface;
 use Ling\Light_Events\Exception\LightEventsException;
 use Ling\Light_Events\Listener\LightEventsListenerInterface;
 
@@ -28,6 +30,12 @@ class LightEventsService
      */
     protected $listeners;
 
+    /**
+     * This property holds the container for this instance.
+     * @var LightServiceContainerInterface
+     */
+    protected $container;
+
 
     /**
      * Builds the LightEventsService instance.
@@ -35,6 +43,7 @@ class LightEventsService
     public function __construct()
     {
         $this->listeners = [];
+        $this->container = null;
     }
 
     /**
@@ -50,6 +59,8 @@ class LightEventsService
             $listeners = $this->listeners[$event];
             krsort($listeners);
             $stopPropagation = false;
+
+
             foreach ($listeners as $listenerGroup) {
                 foreach ($listenerGroup as $listener) {
                     if ($listener instanceof LightEventsListenerInterface) {
@@ -78,6 +89,11 @@ class LightEventsService
      */
     public function registerListener($eventName, $listener, int $priority = 0)
     {
+        if ($listener instanceof LightServiceContainerAwareInterface) {
+            $listener->setContainer($this->container);
+        }
+
+
         if (false === is_array($eventName)) {
             $eventName = [$eventName];
         }
