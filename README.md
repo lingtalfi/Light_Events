@@ -61,6 +61,10 @@ events:
 History Log
 =============
 
+- 1.4.1 -- 2019-12-19
+
+    - fix LightEventsService, forgot setContainer method
+    
 - 1.4.0 -- 2019-12-19
 
     - add LightEventsService->getDispatchedEvents method

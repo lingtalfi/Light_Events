@@ -118,6 +118,7 @@ class LightEventsService
         }
     }
 
+
     /**
      * Returns the dispatchedEvents of this instance, in the order they appeared.
      *
@@ -126,6 +127,16 @@ class LightEventsService
     public function getDispatchedEvents(): array
     {
         return array_unique($this->dispatchedEvents);
+    }
+
+    /**
+     * Sets the container.
+     *
+     * @param LightServiceContainerInterface $container
+     */
+    public function setContainer(LightServiceContainerInterface $container)
+    {
+        $this->container = $container;
     }
 
 
