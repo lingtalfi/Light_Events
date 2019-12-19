@@ -36,6 +36,12 @@ class LightEventsService
      */
     protected $container;
 
+    /**
+     * This property holds the dispatchedEvents for this instance.
+     * @var array
+     */
+    protected $dispatchedEvents;
+
 
     /**
      * Builds the LightEventsService instance.
@@ -43,6 +49,7 @@ class LightEventsService
     public function __construct()
     {
         $this->listeners = [];
+        $this->dispatchedEvents = [];
         $this->container = null;
     }
 
@@ -56,6 +63,9 @@ class LightEventsService
     public function dispatch(string $event, $data = null)
     {
         if (array_key_exists($event, $this->listeners)) {
+
+            $this->dispatchedEvents[] = $event;
+
             $listeners = $this->listeners[$event];
             krsort($listeners);
             $stopPropagation = false;
@@ -107,4 +117,16 @@ class LightEventsService
             $this->listeners[$event][$priority][] = $listener;
         }
     }
+
+    /**
+     * Returns the dispatchedEvents of this instance, in the order they appeared.
+     *
+     * @return array
+     */
+    public function getDispatchedEvents(): array
+    {
+        return array_unique($this->dispatchedEvents);
+    }
+
+
 }

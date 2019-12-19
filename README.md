@@ -61,6 +61,10 @@ events:
 History Log
 =============
 
+- 1.4.0 -- 2019-12-19
+
+    - add LightEventsService->getDispatchedEvents method
+    
 - 1.3.0 -- 2019-12-19
 
     - update LightEventsService, now transmits the container for listeners implementing LightServiceContainerAwareInterface

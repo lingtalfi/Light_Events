@@ -27,11 +27,13 @@ class <span class="pl-k">LightEventsService</span>  {
 - Properties
     - protected array [$listeners](#property-listeners) ;
     - protected [Ling\Light\ServiceContainer\LightServiceContainerInterface](https://github.com/lingtalfi/Light/blob/master/doc/api/Ling/Light/ServiceContainer/LightServiceContainerInterface.md) [$container](#property-container) ;
+    - protected array [$dispatchedEvents](#property-dispatchedEvents) ;
 
 - Methods
     - public [__construct](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/__construct.md)() : void
     - public [dispatch](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/dispatch.md)(string $event, ?$data = null) : void
     - public [registerListener](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/registerListener.md)($eventName, $listener, ?int $priority = 0) : void
+    - public [getDispatchedEvents](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/getDispatchedEvents.md)() : array
 
 }
 
@@ -60,6 +62,12 @@ Properties
     
     
 
+- <span id="property-dispatchedEvents"><b>dispatchedEvents</b></span>
+
+    This property holds the dispatchedEvents for this instance.
+    
+    
+
 
 
 Methods
@@ -68,6 +76,7 @@ Methods
 - [LightEventsService::__construct](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/__construct.md) &ndash; Builds the LightEventsService instance.
 - [LightEventsService::dispatch](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/dispatch.md) &ndash; Dispatches the given event along with the given data.
 - [LightEventsService::registerListener](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/registerListener.md) &ndash; Registers one or more listener(s) (either a callable or a LightEventsListenerInterface instance).
+- [LightEventsService::getDispatchedEvents](https://github.com/lingtalfi/Light_Events/blob/master/doc/api/Ling/Light_Events/Service/LightEventsService/getDispatchedEvents.md) &ndash; Returns the dispatchedEvents of this instance, in the order they appeared.
 
 
 
