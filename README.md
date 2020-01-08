@@ -61,6 +61,10 @@ events:
 History Log
 =============
 
+- 1.5.0 -- 2020-01-08
+
+    - add DebugLightEventsService
+    
 - 1.4.1 -- 2019-12-19
 
     - fix LightEventsService, forgot setContainer method

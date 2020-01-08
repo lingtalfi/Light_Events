@@ -74,8 +74,10 @@ class LightEventsService
             foreach ($listeners as $listenerGroup) {
                 foreach ($listenerGroup as $listener) {
                     if ($listener instanceof LightEventsListenerInterface) {
+                        $this->onListenerProcessBefore($listener, $event, $data);
                         $listener->process($data, $event, $stopPropagation);
                     } elseif (is_callable($listener)) {
+                        $this->onListenerProcessBefore($listener, $event, $data);
                         call_user_func_array($listener, [$data, $event, &$stopPropagation]);
                     } else {
                         $type = gettype($listener);
@@ -139,5 +141,22 @@ class LightEventsService
         $this->container = $container;
     }
 
+
+    //--------------------------------------------
+    //
+    //--------------------------------------------
+    /**
+     * A hook called just before a listener is triggered.
+     *
+     * @param $listener
+     * @param string $event
+     * @param $data
+     *
+     * @overrideMe
+     */
+    protected function onListenerProcessBefore($listener, string $event, $data)
+    {
+
+    }
 
 }

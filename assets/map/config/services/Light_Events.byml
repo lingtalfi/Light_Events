@@ -1,5 +1,6 @@
 events:
     instance: Ling\Light_Events\Service\LightEventsService
+    instance: Ling\Light_Events\Service\DebugLightEventsService
     methods:
         setContainer:
             container: @container()
