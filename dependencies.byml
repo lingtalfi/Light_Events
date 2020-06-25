@@ -1,8 +1,8 @@
 dependencies: 
     Ling: 
         - Bat
-        - Light_Logger
         - Light
+        - Light_Logger
     
 
 post_install: 

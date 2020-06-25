@@ -1,6 +1,6 @@
 Light_Events
 ===========
-2019-10-31 -> 2019-12-19
+2019-10-31 -> 2020-06-25
 
 
 
@@ -52,6 +52,9 @@ events:
     methods:
         setContainer:
             container: @container()
+        setOptions:
+            options:
+                useDebug: false         # default is false
 ```
 
 
@@ -61,6 +64,10 @@ events:
 History Log
 =============
 
+- 1.6.0 -- 2020-06-25
+
+    - update log system, DebugLightEventsService is now integrated by default with useDebug option
+    
 - 1.5.0 -- 2020-01-08
 
     - add DebugLightEventsService
