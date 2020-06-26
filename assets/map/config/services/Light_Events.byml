@@ -5,4 +5,20 @@ events:
             container: @container()
         setOptions:
             options:
-                useDebug: false         # default is false
+                useDebug: true         # default is false
+
+
+# --------------------------------------
+# hooks
+# --------------------------------------
+$logger.methods_collection:
+    -
+        method: addListener
+        args:
+            channels: events.debug
+            listener:
+                instance: Ling\Light_Logger\Listener\LightCleanableFileLoggerListener
+                methods:
+                    configure:
+                        options:
+                            file: ${app_dir}/log/events_debug.txt
