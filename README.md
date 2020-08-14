@@ -1,6 +1,6 @@
 Light_Events
 ===========
-2019-10-31 -> 2020-06-26
+2019-10-31 -> 2020-08-14
 
 
 
@@ -54,7 +54,8 @@ events:
             container: @container()
         setOptions:
             options:
-                useDebug: false         # default is false
+                debugCaught:    true         # default is false
+                debugSent:      true         # default is false
 
 
 # --------------------------------------
@@ -79,6 +80,10 @@ $logger.methods_collection:
 
 History Log
 =============
+
+- 1.8.0 -- 2020-08-14
+
+    - replace useDebug with debugCaught and debugSent options in the service configuration
 
 - 1.7.0 -- 2020-06-25
 

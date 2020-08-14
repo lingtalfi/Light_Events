@@ -5,7 +5,8 @@ events:
             container: @container()
         setOptions:
             options:
-                useDebug: true         # default is false
+                debugCaught:    true         # default is false
+                debugSent:      true         # default is false
 
 
 # --------------------------------------

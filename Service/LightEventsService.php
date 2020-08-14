@@ -79,6 +79,17 @@ class LightEventsService
      */
     public function dispatch(string $event, $data = null)
     {
+
+        $debugSent = $this->options['debugSent']??false;
+        if(true===$debugSent){
+            /**
+             * @var $logger LightLoggerService
+             */
+            $logger = $this->container->get("logger");
+            $logger->log("Dispatching event $event", "events.debug");
+        }
+
+
         if (array_key_exists($event, $this->listeners)) {
 
             $this->dispatchedEvents[] = $event;
@@ -189,7 +200,7 @@ class LightEventsService
     protected function onListenerProcessBefore($listener, string $event, $data)
     {
 
-        $useDebug = $this->options['useDebug'] ?? false;
+        $useDebug = $this->options['debugCaught'] ?? false;
         if (true === $useDebug) {
             $listenerName = null;
             if ($listener instanceof LightEventsListenerInterface) {

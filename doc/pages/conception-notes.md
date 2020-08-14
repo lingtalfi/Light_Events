@@ -1,6 +1,6 @@
 Light Events, conception notes
 ==================
-2019-10-31 -> 2020-06-25
+2019-10-31 -> 2020-08-14
 
 
 
@@ -35,13 +35,15 @@ I also implemented a priority system, and a stop propagation system too.
 
 Logs
 -----------
-2020-06-25
+2020-06-25 -> 2020-08-14
 
 
 We believe in logs.
 
-You can use the debug version of the logger (use the **DebugLightEventsService** class in the service configuration, instead of the
-default LightEventsService class) to output which events were called in the logs.
+You can use the two service configuration options:
+
+- debugSent:    bool=false, to log the names of the sent events
+- debugCaught:  bool=false, to log information about the callable actually processing the events
 
 
 We use the [Light_Logger](https://github.com/lingtalfi/Light_Logger) service under the hood, with the channel: **events.debug**.
