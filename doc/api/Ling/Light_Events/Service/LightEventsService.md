@@ -4,7 +4,7 @@
 
 The LightEventsService class
 ================
-2019-10-31 --> 2020-08-14
+2019-10-31 --> 2020-08-17
 
 
 
@@ -23,6 +23,9 @@ Class synopsis
 
 
 class <span class="pl-k">LightEventsService</span>  {
+
+- Constants
+    - public const [STOP_PROPAGATION](#constant-STOP_PROPAGATION) = _stop_propagation_ ;
 
 - Properties
     - protected array [$listeners](#property-listeners) ;

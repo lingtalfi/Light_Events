@@ -4,7 +4,10 @@
 namespace Ling\Light_Events\Service;
 
 
+use Ling\BabyYaml\BabyYamlUtil;
 use Ling\Bat\DebugTool;
+use Ling\DirScanner\YorgDirScannerTool;
+use Ling\Light\Helper\LightHelper;
 use Ling\Light\ServiceContainer\LightServiceContainerAwareInterface;
 use Ling\Light\ServiceContainer\LightServiceContainerInterface;
 use Ling\Light_Events\Exception\LightEventsException;
@@ -16,6 +19,9 @@ use Ling\Light_Logger\LightLoggerService;
  */
 class LightEventsService
 {
+
+
+    public const STOP_PROPAGATION = '_stop_propagation_';
 
 
     /**
@@ -80,8 +86,8 @@ class LightEventsService
     public function dispatch(string $event, $data = null)
     {
 
-        $debugSent = $this->options['debugSent']??false;
-        if(true===$debugSent){
+        $debugSent = $this->options['debugSent'] ?? false;
+        if (true === $debugSent) {
             /**
              * @var $logger LightLoggerService
              */
@@ -90,14 +96,17 @@ class LightEventsService
         }
 
 
-        if (array_key_exists($event, $this->listeners)) {
+        //--------------------------------------------
+        // STATIC CALLS
+        //--------------------------------------------
 
+
+        if (array_key_exists($event, $this->listeners)) {
             $this->dispatchedEvents[] = $event;
 
             $listeners = $this->listeners[$event];
             krsort($listeners);
             $stopPropagation = false;
-
 
             foreach ($listeners as $listenerGroup) {
                 foreach ($listenerGroup as $listener) {
@@ -117,6 +126,35 @@ class LightEventsService
                 }
             }
         }
+
+
+        //--------------------------------------------
+        // DYNAMIC CALLS
+        //--------------------------------------------
+        $dir = $this->container->getApplicationDir() . "/config/dynamic/Light_Events/$event";
+        if (is_dir($dir)) {
+            $originId = null;
+            $files = YorgDirScannerTool::getFilesWithExtension($dir, 'byml', false, false);
+            foreach ($files as $path) {
+                $events = BabyYamlUtil::readFile($path);
+                foreach ($events as $expr) {
+                    $res = LightHelper::executeMethod($expr, $this->container, [
+                        "argReplace" => [
+                            'event' => $event,
+                            'data' => $data,
+                            'dynamicPath' => $path,
+                        ],
+                    ]);
+
+                    if (self::STOP_PROPAGATION === $res) {
+                        break 2;
+                    }
+                }
+            }
+
+        }
+
+
     }
 
 

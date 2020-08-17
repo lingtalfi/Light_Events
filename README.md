@@ -1,6 +1,6 @@
 Light_Events
 ===========
-2019-10-31 -> 2020-08-14
+2019-10-31 -> 2020-08-17
 
 
 
@@ -81,6 +81,10 @@ $logger.methods_collection:
 History Log
 =============
 
+- 1.9.0 -- 2020-08-17
+
+    - add **Dynamic events registration** system
+    
 - 1.8.0 -- 2020-08-14
 
     - replace useDebug with debugCaught and debugSent options in the service configuration
