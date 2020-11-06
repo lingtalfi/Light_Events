@@ -5,10 +5,10 @@ events:
             container: @container()
         setOptions:
             options:
-                debugCaught:    true         # default is false
-                debugSent:      true         # default is false
-
-
+                debugDispatch: true   # default is false
+                debugCall: true       # default is false
+                formattingDispatch: white:bgRed
+                formattingCall: null
 # --------------------------------------
 # hooks
 # --------------------------------------

@@ -49,7 +49,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [LightEventsService::setContainer](https://github.com/lingtalfi/Light_Events/blob/master/Service/LightEventsService.php#L205-L208)
+See the source code for method [LightEventsService::setContainer](https://github.com/lingtalfi/Light_Events/blob/master/Service/LightEventsService.php#L227-L230)
 
 
 See Also

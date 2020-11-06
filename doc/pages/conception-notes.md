@@ -1,6 +1,6 @@
 Light Events, conception notes
 ==================
-2019-10-31 -> 2020-08-17
+2019-10-31 -> 2020-11-06
 
 
 
@@ -35,15 +35,24 @@ I also implemented a priority system, and a stop propagation system too.
 
 Logs
 -----------
-2020-06-25 -> 2020-08-14
+2020-06-25 -> 2020-11-06
 
 
 We believe in logs.
 
-You can use the two service configuration options:
+You can use the following service configuration options:
 
-- debugSent:    bool=false, to log the names of the sent events
-- debugCaught:  bool=false, to log information about the callable actually processing the events
+- debugDispatch: bool=false, whether to log when we dispatch an event.
+- debugCall:  bool=false, whether to log when we trigger a listener.
+- formattingDispatch: string=null, the [bashhtml](https://github.com/lingtalfi/CliTools/blob/master/doc/pages/bashtml.md) formatting to wrap the debugDispatch messages with. 
+- formattingCall: string=null, the bashhtml formatting to wrap the debugCall messages with. 
+
+
+Examples of formatting: 
+
+- white
+- white:bgRed
+
 
 
 We use the [Light_Logger](https://github.com/lingtalfi/Light_Logger) service under the hood, with the channel: **events.debug**.

@@ -6,6 +6,7 @@ namespace Ling\Light_Events\Service;
 
 use Ling\BabyYaml\BabyYamlUtil;
 use Ling\Bat\DebugTool;
+use Ling\CliTools\Formatter\BashtmlFormatter;
 use Ling\DirScanner\YorgDirScannerTool;
 use Ling\Light\Helper\LightHelper;
 use Ling\Light\ServiceContainer\LightServiceContainerAwareInterface;
@@ -55,14 +56,24 @@ class LightEventsService
      *
      * Available options are:
      *
-     * - useDebug: bool = false.
-     *      If true, we log the dispatching details in a a log.
-     *      See more details in the @page(Light_Events conception notes).
+     * - debugDispatch: bool = false. Whether to log when we dispatch an event.
+     * - debugCall: bool = false. Whether to log when a listener's method is called.
+     * - formattingDispatch: string=null, the @page(bashtml) formatting to wrap the "debugDispatch" messages with (example: white, or white:bgRed, etc...).
+     * - formattingSent: string=null, the @page(bashtml) formatting to wrap the "debugCall" messages with.
+     *
+     *
+     * See more details in the @page(Light_Events conception notes).
      *
      *
      * @var array
      */
     protected $options;
+
+    /**
+     * This property holds the _bashtmlFormatter for this instance.
+     * @var BashtmlFormatter|null
+     */
+    private $_bashtmlFormatter;
 
 
     /**
@@ -74,7 +85,9 @@ class LightEventsService
         $this->dispatchedEvents = [];
         $this->container = null;
         $this->options = [];
+        $this->_bashtmlFormatter = null;
     }
+
 
     /**
      * Dispatches the given event along with the given data.
@@ -86,13 +99,22 @@ class LightEventsService
     public function dispatch(string $event, $data = null)
     {
 
-        $debugSent = $this->options['debugSent'] ?? false;
+        $debugSent = $this->options['debugDispatch'] ?? false;
         if (true === $debugSent) {
+
             /**
              * @var $logger LightLoggerService
              */
             $logger = $this->container->get("logger");
-            $logger->log("Dispatching event $event", "events.debug");
+
+            $msg = "Dispatching event $event";
+            $fSent = $this->options['formattingDispatch'] ?? null;
+            if (null !== $fSent) {
+                $msg = $this->getFormattedMessage($msg, $fSent);
+            }
+
+
+            $logger->log($msg, "events.debug");
         }
 
 
@@ -238,7 +260,7 @@ class LightEventsService
     protected function onListenerProcessBefore($listener, string $event, $data)
     {
 
-        $useDebug = $this->options['debugCaught'] ?? false;
+        $useDebug = $this->options['debugCall'] ?? false;
         if (true === $useDebug) {
             $listenerName = null;
             if ($listener instanceof LightEventsListenerInterface) {
@@ -246,7 +268,15 @@ class LightEventsService
             } else {
                 $listenerName = DebugTool::toString($listener);
             }
+
+
             $sentence = "Calling listener $listenerName on event $event.";
+
+            $fCaught = $this->options['formattingCall'] ?? null;
+            if (null !== $fCaught) {
+                $sentence = $this->getFormattedMessage($sentence, $fCaught);
+            }
+
 
             /**
              * @var $logger LightLoggerService
@@ -256,4 +286,24 @@ class LightEventsService
         }
     }
 
+
+
+    //--------------------------------------------
+    //
+    //--------------------------------------------
+
+    /**
+     * Applies the given @page(bashtml) format to the given msg and returns the result.
+     *
+     * @param string $msg
+     * @param string $format
+     * @return string
+     */
+    private function getFormattedMessage(string $msg, string $format): string
+    {
+        if (null === $this->_bashtmlFormatter) {
+            $this->_bashtmlFormatter = new BashtmlFormatter();
+        }
+        return $this->_bashtmlFormatter->format("<$format>$msg</$format>");
+    }
 }

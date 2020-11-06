@@ -1,6 +1,6 @@
 Light_Events
 ===========
-2019-10-31 -> 2020-08-17
+2019-10-31 -> 2020-11-06
 
 
 
@@ -54,10 +54,10 @@ events:
             container: @container()
         setOptions:
             options:
-                debugCaught:    true         # default is false
-                debugSent:      true         # default is false
-
-
+                debugDispatch: true   # default is false
+                debugCall: true       # default is false
+                formattingDispatch: white:bgRed
+                formattingCall: null
 # --------------------------------------
 # hooks
 # --------------------------------------
@@ -72,6 +72,7 @@ $logger.methods_collection:
                     configure:
                         options:
                             file: ${app_dir}/log/events_debug.txt
+
 ```
 
 
@@ -81,6 +82,10 @@ $logger.methods_collection:
 History Log
 =============
 
+- 1.9.1 -- 2020-11-06
+
+    - update service configuration options, add formattingDispatch and formattingCall
+    
 - 1.9.0 -- 2020-08-17
 
     - add **Dynamic events registration** system
