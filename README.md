@@ -1,6 +1,6 @@
 Light_Events
 ===========
-2019-10-31 -> 2020-11-06
+2019-10-31 -> 2020-11-27
 
 
 
@@ -82,6 +82,10 @@ $logger.methods_collection:
 History Log
 =============
 
+- 1.9.2 -- 2020-11-27
+
+    - add LightEventsHelper class
+    
 - 1.9.1 -- 2020-11-06
 
     - update service configuration options, add formattingDispatch and formattingCall
