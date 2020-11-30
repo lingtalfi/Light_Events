@@ -30,6 +30,6 @@ class LightEventsHelper
         foreach ($variables as $k => $v) {
             $event->setVar($k, $v);
         }
-        $ev->dispatch($eventName);
+        $ev->dispatch($eventName, $event);
     }
 }
