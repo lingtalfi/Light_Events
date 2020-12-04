@@ -82,6 +82,10 @@ $logger.methods_collection:
 History Log
 =============
 
+- 1.9.4 -- 2020-12-04
+
+    - Add lpi-deps.byml file
+
 - 1.9.3 -- 2020-11-30
 
     - fix LightEventsHelper::dispatchEvent not sending the event
