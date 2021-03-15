@@ -1,6 +1,6 @@
 Light Events, conception notes
 ==================
-2019-10-31 -> 2020-11-06
+2019-10-31 -> 2021-03-09
 
 
 
@@ -63,35 +63,45 @@ We use the [Light_Logger](https://github.com/lingtalfi/Light_Logger) service und
 
 Dynamic events registration
 ------------
-2020-08-14 -> 2020-08-17
+2020-08-14 -> 2021-03-09
 
 
-As an alternative to registering events statically, which is very fast but usually registers more listeners than the one actually used,
-our service also supports dynamic registration, which is much slower in action since its based on the filesystem, but has the benefit of actually
-calling only the relevant listeners.
 
-We recommend using static registration for events that are called often, and dynamic registration for events that occur more occasionally.
-This recommendation is obviously very subjective, and depends on your application and your mindset.
+We provide an [open registration system](https://github.com/lingtalfi/Light/blob/master/personal/mydoc/pages/design/open-vs-close-service-registration.md#the-open-registration), which works as explained below.
 
-To use our **dynamic registration** system, you need to know the event name first, and then you create a [babyYaml](https://github.com/lingtalfi/BabyYaml) file at the root of the **appDir/config/dynamic/Light_Events/$eventName** directory.
+
+
+First, you need to know the event name first, and then you create a [babyYaml](https://github.com/lingtalfi/BabyYaml) file at the root of our event directory, it should look like this:
+
+- **config/open/Ling.Light_Events/$your_event_name.byml**
+
+
+
+With:
+ 
+- **$your_event_name**: the event name that you choose
+
 
 For now, we only will parse direct children of this directory (this idea is very new as I'm writing those lines).
 
-
-By convention, plugin authors create a file using with their plugin names, because then it allows them to use automation tool (such as the [kaos suite](https://github.com/lingtalfi/LingTalfi/tree/master/Kaos) for instance).
-
-
-So for instance, typically a plugin named **Light_MyPlugin** who wants to listen to the **Light_Database.on_lun_user_notification_create** event will create a structure like this one:
-
-- appDir/config/dynamic/Light_Events/Light_Database.on_lun_user_notification_create/Light_MyPlugin.byml
+By convention, we start the event name with the [planet dot name](https://github.com/karayabin/universe-snapshot#the-planet-dot-name),
+to keep things organized, and also because it allows then to use some automation tool (such as the [kaos suite](https://github.com/lingtalfi/LingTalfi/tree/master/Kaos) for instance).
 
 
-However, this is just a convention, and as the app maintainer, you can create your own events registration nuggets very easily. All the following files are valid and would be registered dynamically:
+
+So for instance, typically a plugin named **Ling.Light_MyPlugin** who wants to listen to the **Ling.Ling.Light_Database.on_lun_user_notification_create** event will create a structure like this one:
+
+- **config/open/Ling.Light_Events/Ling.Ling.Light_Database.on_lun_user_notification_create/Ling.Light_MyPlugin.byml**
+
+
+However, this is just a convention, and as the app maintainer for instance, you can create your own events registration nuggets very easily.
+
+All the following files are valid and would be registered dynamically:
 
    
-- appDir/config/dynamic/Light_Events/Light_Database.on_lun_user_notification_create/Boris.byml
-- appDir/config/dynamic/Light_Events/Light_Database.on_lun_user_notification_create/The_App_Maintainer.byml
-- appDir/config/dynamic/Light_Events/Light_Database.on_lun_user_notification_create/whatever.byml
+- config/open/Ling.Light_Events/Ling.Ling.Light_Database.on_lun_user_notification_create/Boris.byml
+- config/open/Ling.Light_Events/Ling.Ling.Light_Database.on_lun_user_notification_create/The_App_Maintainer.byml
+- config/open/Ling.Light_Events/Ling.Ling.Light_Database.on_lun_user_notification_create/whatever.byml
 
 
 As for the content of that babyYaml file, we expect an array of callables.
