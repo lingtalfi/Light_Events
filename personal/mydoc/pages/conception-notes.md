@@ -1,6 +1,6 @@
 Light Events, conception notes
 ==================
-2019-10-31 -> 2021-03-09
+2019-10-31 -> 2021-03-18
 
 
 
@@ -61,9 +61,42 @@ We use the [Light_Logger](https://github.com/lingtalfi/Light_Logger) service und
 
 
 
-Dynamic events registration
+Events registration
+---------
+2021-03-18
+
+
+Not all events are equal.
+
+Some of them will be called on every page refresh, while some others will be called only a certain situations.
+
+That's why we provide a hybrid registration system, composed of two systems:
+
+- [open registration system](#open-events-registration-system)
+- [close registration system](https://github.com/lingtalfi/Light/blob/master/personal/mydoc/pages/design/open-vs-close-service-registration.md#the-close-registration)
+
+
+So, as a third-party plugin author, you can choose which one suits you best.
+For instance if the event you listen to is not called often, you can use the open registration system.
+
+On the other hand if you want to listen to an event that you know will be called all the time, just use the traditional closed registration system.
+
+
+The open registered listeners are executed **AFTER** the one registered statically.
+
+
+
+
+
+
+
+
+Open events registration system
 ------------
-2020-08-14 -> 2021-03-09
+2020-08-14 -> 2021-03-18
+
+
+
 
 
 
@@ -71,43 +104,42 @@ We provide an [open registration system](https://github.com/lingtalfi/Light/blob
 
 
 
-First, you need to know the event name first, and then you create a [babyYaml](https://github.com/lingtalfi/BabyYaml) file at the root of our event directory, it should look like this:
 
-- **config/open/Ling.Light_Events/$your_event_name.byml**
+### The event file location
+2021-03-18
 
+Basically, for a given **$event_name** event, we will trigger all listeners defined in the following directory:
 
-
-With:
- 
-- **$your_event_name**: the event name that you choose
+- **config/open/Ling.Light_Events/events/$event_name/**
 
 
-For now, we only will parse direct children of this directory (this idea is very new as I'm writing those lines).
-
-By convention, we start the event name with the [planet dot name](https://github.com/karayabin/universe-snapshot#the-planet-dot-name),
-to keep things organized, and also because it allows then to use some automation tool (such as the [kaos suite](https://github.com/lingtalfi/LingTalfi/tree/master/Kaos) for instance).
+To define a listener, create a [babyYaml](https://github.com/lingtalfi/BabyYaml) file which name is your [planetDotName](https://github.com/karayabin/universe-snapshot#the-planet-dot-name) 
+(actually any babyYaml file will be parsed, but we recommend that you create only one babyYaml file per planet, to avoid [eco-structure](https://github.com/lingtalfi/Light/blob/master/personal/mydoc/pages/nomenclature.md#eco-structure) anarchy). 
 
 
+So for instance if your plugin is MyGalaxy.PlanetOne, then create the following file:
 
-So for instance, typically a plugin named **Ling.Light_MyPlugin** who wants to listen to the **Ling.Ling.Light_Database.on_lun_user_notification_create** event will create a structure like this one:
-
-- **config/open/Ling.Light_Events/Ling.Ling.Light_Database.on_lun_user_notification_create/Ling.Light_MyPlugin.byml**
+- **config/open/Ling.Light_Events/events/$event_name/MyGalaxy.PlanetOne.byml**
 
 
-However, this is just a convention, and as the app maintainer for instance, you can create your own events registration nuggets very easily.
+For now, we only parse direct children of the event directory (i.e. sub-directories are not allowed).
 
-All the following files are valid and would be registered dynamically:
 
-   
-- config/open/Ling.Light_Events/Ling.Ling.Light_Database.on_lun_user_notification_create/Boris.byml
-- config/open/Ling.Light_Events/Ling.Ling.Light_Database.on_lun_user_notification_create/The_App_Maintainer.byml
-- config/open/Ling.Light_Events/Ling.Ling.Light_Database.on_lun_user_notification_create/whatever.byml
+By convention, the event name should start with the [planet dot name](https://github.com/karayabin/universe-snapshot#the-planet-dot-name) of the plugin issuing it.
 
+
+So a concrete path of an **event file** would be this for instance:
+
+- **config/open/Ling.Light_Events/Ling.Light_Database.on_lun_user_notification_create/MyGalaxy.PlanetOne.byml**
+
+
+
+### The event file content
+2021-03-18
 
 As for the content of that babyYaml file, we expect an array of callables.
 
 Each callable must be written in a special format, which you can think of as the [light execute notation](https://github.com/lingtalfi/Light/blob/master/personal/mydoc/pages/notation/light-execute-notation.md).
-
 
 
 So for instance a file could contain something like this:
@@ -147,11 +179,6 @@ Then our service will call the **some_service->method** method with the followin
 The stopPropagation flag is also available, but not as a variable.
 Instead, by default, the propagation doesn't stop, and your method can stop the propagation by returning 
 the special string **LightEventsService::STOP_PROPAGATION**.
-
-
-
-The dynamically registered listeners are executed *AFTER* the one registered statically.
-
 
 
 

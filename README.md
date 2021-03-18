@@ -1,6 +1,6 @@
 Light_Events
 ===========
-2019-10-31 -> 2021-03-15
+2019-10-31 -> 2021-03-18
 
 
 
@@ -87,6 +87,10 @@ $logger.methods_collection:
 History Log
 =============
 
+- 1.9.9 -- 2021-03-18
+
+    - update conception notes
+  
 - 1.9.8 -- 2021-03-15
 
     - update planet to adapt Ling.Light:0.70.0
