@@ -87,6 +87,10 @@ $logger.methods_collection:
 History Log
 =============
 
+- 1.10.0 -- 2021-03-19
+
+    - update open registration system, now use one file per event 
+  
 - 1.9.10 -- 2021-03-19
 
     - fix open event system using wrong directory 

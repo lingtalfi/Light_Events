@@ -151,7 +151,7 @@ class LightEventsService
 
 
         //--------------------------------------------
-        // DYNAMIC CALLS
+        // OPEN REGISTERED LISTENERS
         //--------------------------------------------
         $dir = $this->container->getApplicationDir() . "/config/open/Ling.Light_Events/events/$event";
         if (is_dir($dir)) {

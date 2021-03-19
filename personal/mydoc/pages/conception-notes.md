@@ -1,6 +1,6 @@
 Light Events, conception notes
 ==================
-2019-10-31 -> 2021-03-18
+2019-10-31 -> 2021-03-19
 
 
 
@@ -106,36 +106,26 @@ We provide an [open registration system](https://github.com/lingtalfi/Light/blob
 
 
 ### The event file location
-2021-03-18
-
-Basically, for a given **$event_name** event, we will trigger all listeners defined in the following directory:
-
-- **config/open/Ling.Light_Events/events/$event_name/**
+2021-03-18 -> 2021-03-19
 
 
-To define a listener, create a [babyYaml](https://github.com/lingtalfi/BabyYaml) file which name is your [planetDotName](https://github.com/karayabin/universe-snapshot#the-planet-dot-name) 
-(actually any babyYaml file will be parsed, but we recommend that you create only one babyYaml file per planet, to avoid [eco-structure](https://github.com/lingtalfi/Light/blob/master/personal/mydoc/pages/nomenclature.md#eco-structure) anarchy). 
+Basically, for a given **$event_name** event, we will trigger all listeners defined in the following file:
+
+- **config/open/Ling.Light_Events/events/$event_name.byml**
 
 
-So for instance if your plugin is MyGalaxy.PlanetOne, then create the following file:
-
-- **config/open/Ling.Light_Events/events/$event_name/MyGalaxy.PlanetOne.byml**
+This is a [babyYaml](https://github.com/lingtalfi/BabyYaml) file. 
 
 
-For now, we only parse direct children of the event directory (i.e. sub-directories are not allowed).
+For now, we only parse direct children of the **events** directory (i.e. sub-directories are not allowed).
 
-
-By convention, the event name should start with the [planet dot name](https://github.com/karayabin/universe-snapshot#the-planet-dot-name) of the plugin issuing it.
-
-
-So a concrete path of an **event file** would be this for instance:
-
-- **config/open/Ling.Light_Events/Ling.Light_Database.on_lun_user_notification_create/MyGalaxy.PlanetOne.byml**
+Third-party authors add their listeners in that file in a collaborative manner.
 
 
 
 ### The event file content
-2021-03-18
+2021-03-18 -> 2021-03-19
+
 
 As for the content of that babyYaml file, we expect an array of callables.
 
@@ -148,6 +138,7 @@ So for instance a file could contain something like this:
 - @some_service->method(ee,ff)
 - @some_service2->method(ee,ff)
 ```
+
 
 
 There are some extra variables available to you:
@@ -181,6 +172,65 @@ Instead, by default, the propagation doesn't stop, and your method can stop the 
 the special string **LightEventsService::STOP_PROPAGATION**.
 
 
+By convention, for readability's sake, since this file is written collaboratively by multiple plugins,
+third-party authors will start their "addition" to the file with a section comment stating their name, like this:
+
+
+```yaml
+# --------------------------------------
+# Ling.Light_Kit_Admin_PluginABC
+# --------------------------------------
+- @some_service->method(ee,ff)
+- @some_service2->method(ee,ff)
+- 
+# --------------------------------------
+# GalaxyTwo.ShowBizPlanet
+# --------------------------------------
+- @some_service3->method(data, event)
+- @some_service4->anotherMethod(data)
+
+
+```
+
+
+
+To help third-party authors with this task, we provide the **LightEventsHelper::registerOpenEventByPlanet** method, which 
+assumes that the [basic open events convention](#basic-open-events-convention) is implemented.
+
+
+
+
+Basic open events convention
+---------
+2021-03-19
+
+
+This is a convention to help third-party authors registering their plugin's events.
+
+A plugin **GalaxyOne.PluginOne** should create the following file:
+
+- config/data/GalaxyOne.PluginOne/Ling.Light_Events/open-events.byml
+
+This file should look like this:
+
+```yaml
+Ling.Light_Kit_Admin.on_user_successful_connexion:
+    - @kit_admin->onWebsiteUserLogin(data)
+    
+    
+# the formal notation would look like this:
+$eventName:
+    - $callable    
+    - $callable    
+    - ...
+    
+
+
+```
+
+
+Once this is done, the third-party author can call the **LightEventsHelper::registerOpenEventByPlanet**, which will put the events in the right spot,
+in the **config/open/Ling.Light_Events/events/** directory.
 
 
 
