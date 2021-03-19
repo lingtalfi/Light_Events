@@ -1,6 +1,6 @@
 Light_Events
 ===========
-2019-10-31 -> 2021-03-18
+2019-10-31 -> 2021-03-19
 
 
 
@@ -87,6 +87,10 @@ $logger.methods_collection:
 History Log
 =============
 
+- 1.9.10 -- 2021-03-19
+
+    - fix open event system using wrong directory 
+  
 - 1.9.9 -- 2021-03-18
 
     - update conception notes

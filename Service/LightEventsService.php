@@ -153,7 +153,7 @@ class LightEventsService
         //--------------------------------------------
         // DYNAMIC CALLS
         //--------------------------------------------
-        $dir = $this->container->getApplicationDir() . "/config/open/Ling.Light_Events/$event";
+        $dir = $this->container->getApplicationDir() . "/config/open/Ling.Light_Events/events/$event";
         if (is_dir($dir)) {
             $originId = null;
             $files = YorgDirScannerTool::getFilesWithExtension($dir, 'byml', false, false);

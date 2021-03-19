@@ -157,3 +157,11 @@
     - Ling:DirScanner:1.13.5+
     - Ling:Light:0.70.1+
     - Ling:Light_Logger:1.11.7+
+
+1.9.10: 
+    - Ling:BabyYaml:1.7.8+
+    - Ling:Bat:1.309+
+    - Ling:CliTools:1.10.26+
+    - Ling:DirScanner:1.13.5+
+    - Ling:Light:0.70.1+
+    - Ling:Light_Logger:1.11.7+
