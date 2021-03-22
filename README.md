@@ -1,6 +1,6 @@
 Light_Events
 ===========
-2019-10-31 -> 2021-03-19
+2019-10-31 -> 2021-03-22
 
 
 
@@ -87,6 +87,10 @@ $logger.methods_collection:
 History Log
 =============
 
+- 1.10.1 -- 2021-03-22
+
+    - update open registration system documentation 
+  
 - 1.10.0 -- 2021-03-19
 
     - update open registration system, now use one file per event 

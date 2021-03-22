@@ -1,6 +1,6 @@
 Light Events, conception notes
 ==================
-2019-10-31 -> 2021-03-19
+2019-10-31 -> 2021-03-22
 
 
 
@@ -202,7 +202,7 @@ assumes that the [basic open events convention](#basic-open-events-convention) i
 
 Basic open events convention
 ---------
-2021-03-19
+2021-03-19 -> 2021-03-22
 
 
 This is a convention to help third-party authors registering their plugin's events.
@@ -211,22 +211,27 @@ A plugin **GalaxyOne.PluginOne** should create the following file:
 
 - config/data/GalaxyOne.PluginOne/Ling.Light_Events/open-events.byml
 
+
 This file should look like this:
 
 ```yaml
-Ling.Light_Kit_Admin.on_user_successful_connexion:
-    - @kit_admin->onWebsiteUserLogin(data)
-    
     
 # the formal notation would look like this:
 $eventName:
     - $callable    
     - $callable    
     - ...
-    
-
 
 ```
+
+
+Here is a concrete example:
+
+```yaml
+Ling.Light_Kit_Admin.on_user_successful_connexion:
+    - @plugin_one->onWebsiteUserLogin(data)
+```
+
 
 
 Once this is done, the third-party author can call the **LightEventsHelper::registerOpenEventByPlanet**, which will put the events in the right spot,
