@@ -87,6 +87,10 @@ $logger.methods_collection:
 History Log
 =============
 
+- 1.10.2 -- 2021-03-22
+
+    - fix service not triggering open registration system correctly 
+  
 - 1.10.1 -- 2021-03-22
 
     - update open registration system documentation 
