@@ -87,6 +87,10 @@ $logger.methods_collection:
 History Log
 =============
 
+- 1.10.3 -- 2021-05-03
+
+    - Update dependencies to Ling.Light_Logger (pushed by SubscribersUtil)
+
 - 1.10.2 -- 2021-03-22
 
     - fix service not triggering open registration system correctly 

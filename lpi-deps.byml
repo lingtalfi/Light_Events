@@ -191,3 +191,11 @@
     - Ling:Light:0.70.1+
     - Ling:Light_Logger:1.11.7+
     - Ling:SectionComment:1.0.1+
+
+1.10.3: 
+    - Ling:BabyYaml:1.7.8+
+    - Ling:Bat:1.312+
+    - Ling:CliTools:1.10.26+
+    - Ling:Light:0.70.2+
+    - Ling:Light_Logger:1.11.8+
+    - Ling:SectionComment:1.0.1+
