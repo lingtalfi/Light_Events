@@ -87,6 +87,10 @@ $logger.methods_collection:
 History Log
 =============
 
+- 1.10.5 -- 2021-05-03
+
+    - Update dependencies to Ling.Light_Logger (pushed by SubscribersUtil)
+
 - 1.10.4 -- 2021-05-03
 
     - fake commit to force assets regeneration
