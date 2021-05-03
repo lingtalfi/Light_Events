@@ -1,6 +1,6 @@
 Light_Events
 ===========
-2019-10-31 -> 2021-03-22
+2019-10-31 -> 2021-05-03
 
 
 
@@ -86,6 +86,10 @@ $logger.methods_collection:
 
 History Log
 =============
+
+- 1.10.4 -- 2021-05-03
+
+    - fake commit to force assets regeneration
 
 - 1.10.3 -- 2021-05-03
 
